@@ -1,0 +1,11 @@
+applications:
+- disk_quota: 2000M
+  command: npm run start 
+  path: .
+  name: sonhar
+  host: sonhar
+  instances: 1
+  memory: 256M
+  health-check-type: none
+  env:
+    ENABLE_BLUEMIX_DEV_MODE: "false"

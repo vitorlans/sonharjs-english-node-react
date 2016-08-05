@@ -1,0 +1,56 @@
+{
+  "name": "sonhar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./app.js",
+  "homepage": "",
+  "author": "Vitor Lans",
+  "license": "MIT",
+  "scripts": {
+    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
+    "start": "node ./app.js",
+    "start-dev": "nodemon ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "react",
+    "express",
+    "webpack",
+    "es2015",
+    "javascript"
+  ],
+  "dependencies": {
+    "express": "^4.13.4",
+    "fetch": "^1.1.0",
+    "images-scraper": "^2.0.10",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-headroom": "^2.0.0",
+    "react-helmet": "^3.1.0",
+    "react-router": "^2.4.1"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.9.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "file-loader": "^0.8.5",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
+  },
+  "engines": {
+    "node": "5.1.0"
+  }
+}

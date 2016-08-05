@@ -1,0 +1,35 @@
+.header--backgroud {
+    background: wheat
+}
+
+.header {
+    height: 68px;
+}
+
+.header--image{
+    max-width: 55px;
+}
+
+
+.app--padding {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.app--center-block {
+    
+}
+
+.img{
+    width:100%;
+    height: 60%;
+}
+
+.image--padding div {
+    padding-bottom: 12px;
+    padding-right: 7px;
+}
+
+.app--margin-top {
+    margin-top: 48px!important;
+}
