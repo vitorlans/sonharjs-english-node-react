@@ -2,11 +2,16 @@ import React, {Component} from 'react';
 
 export class DictionaryWidget extends Component {
     render() {
+        let rows = [];
+        if(this.props.data.definitions !== undefined){
+            this.props.data.definitions.map(function (def , key) {
+                rows.push(<p key={key}>{key + 1}. {def}</p>);
+            }, this);
+        }
         return (
             <div className="w3-panel w3-leftbar w3-light-grey ">
-                <p className="w3-xxlarge w3-serif"><i>'Thing' is a rather useful little word that can be substituted for most nouns or noun clauses. It's main uses are: </i></p>
-                <p>1. An object you can't remember or don't know the name of. </p>
-                <p>2. An interest or area of knowledge</p>
+                <p className="w3-xxlarge "><i>{this.props.word}</i> - {this.props.data.type}</p>
+                {rows}
             </div> 
         );
     }

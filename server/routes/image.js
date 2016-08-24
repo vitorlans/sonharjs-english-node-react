@@ -8,14 +8,14 @@ var pics = new Scraper.Picsearch();
 exports.imageByKeyword = function(req, res) {
 
     if(!req.query.keyword){ return res.status(400).send({ message: "parametro keyword não pode ser vazio." }); }
-    if(!req.query.engine){ return res.status(400).send({ message: "parametro engine não pode ser vazio." }); }
+    //if(!req.query.engine){ return res.status(400).send({ message: "parametro engine não pode ser vazio." }); }
 
     switch(req.query.engine){
 
         case "1":
             google.list({
                 keyword: req.query.keyword,
-                num: 50,
+                num: 20,
                 detail: true         
             })
             .then(function (res1) {
@@ -28,7 +28,7 @@ exports.imageByKeyword = function(req, res) {
         case "2":
             bing.list({
                 keyword: req.query.keyword,
-                num: 50,
+                num: 20,
                 detail: true         
             })
             .then(function (res1) {
@@ -41,7 +41,7 @@ exports.imageByKeyword = function(req, res) {
         case "3":
             yahoo.list({
                 keyword: req.query.keyword,
-                num: 50,
+                num: 20,
                 detail: true         
             })
             .then(function (res1) {
@@ -54,7 +54,7 @@ exports.imageByKeyword = function(req, res) {
         case "4":
             pics.list({
                 keyword: req.query.keyword,
-                num: 50,
+                num: 20,
                 detail: true         
             })
             .then(function (res1) {
@@ -66,7 +66,7 @@ exports.imageByKeyword = function(req, res) {
         default:
             bing.list({
                 keyword: req.query.keyword,
-                num: 50,
+                num: 20,
                 detail: true         
             })
             .then(function (res1) {

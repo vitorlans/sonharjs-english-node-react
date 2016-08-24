@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
-const image = require('./routes/image.js');
+const image = require('./routes/image');
+const define = require('./routes/define');
 
 module.exports = {
   app: function () {
@@ -11,6 +12,7 @@ module.exports = {
     app.use('/public', publicPath);
     app.get('/', function (_, res) { res.sendFile(indexPath); });
     app.get("/api/image", image.imageByKeyword);
+    app.get("/api/define", define.defineByKeyword);
     return app;
   }
 };
