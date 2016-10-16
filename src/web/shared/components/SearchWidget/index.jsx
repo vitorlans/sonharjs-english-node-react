@@ -21,7 +21,7 @@ export class SearchWidget extends Component {
 
     onChange(e) {
         const input = e.target.value;
-        //if(!input) return;
+        if(input === this.state.value) return;
 
         this.setState({value: input});
     }
@@ -37,7 +37,7 @@ export class SearchWidget extends Component {
 
     onClick() {
         if (!this.state.value) return;
-            
+
         if (this.props.onSearch) {
             this.props.onSearch(this.state.value);
         }

@@ -15,7 +15,7 @@ exports.imageByKeyword = function(req, res) {
         case "1":
             google.list({
                 keyword: req.query.keyword,
-                num: 20,
+                num: 10,
                 detail: true         
             })
             .then(function (res1) {
@@ -28,7 +28,7 @@ exports.imageByKeyword = function(req, res) {
         case "2":
             bing.list({
                 keyword: req.query.keyword,
-                num: 20,
+                num: 10,
                 detail: true         
             })
             .then(function (res1) {
@@ -41,7 +41,7 @@ exports.imageByKeyword = function(req, res) {
         case "3":
             yahoo.list({
                 keyword: req.query.keyword,
-                num: 20,
+                num: 10,
                 detail: true         
             })
             .then(function (res1) {
@@ -54,7 +54,7 @@ exports.imageByKeyword = function(req, res) {
         case "4":
             pics.list({
                 keyword: req.query.keyword,
-                num: 20,
+                num: 10,
                 detail: true         
             })
             .then(function (res1) {
@@ -66,7 +66,7 @@ exports.imageByKeyword = function(req, res) {
         default:
             bing.list({
                 keyword: req.query.keyword,
-                num: 20,
+                num: 10,
                 detail: true         
             })
             .then(function (res1) {

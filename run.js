@@ -1,4 +1,4 @@
-const Server = require('./server/server.js');
+const Server = require('./src/server/index.js');
 const port = (process.env.PORT || 8080);
 const app = Server.app();
 

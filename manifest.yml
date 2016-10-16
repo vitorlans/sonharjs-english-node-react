@@ -5,7 +5,7 @@ applications:
   name: sonhar
   host: sonhar
   instances: 1
-  memory: 256M
+  memory: 128M
   health-check-type: none
   env:
     ENABLE_BLUEMIX_DEV_MODE: "false"

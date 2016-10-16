@@ -6,12 +6,12 @@ module.exports = {
 
   entry: [
     'webpack-hot-middleware/client',
-    './src/index'
+    './src/web/index'
   ],
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ['node_modules', 'src']
+    modulesDirectories: ['node_modules', 'web']
   },
 
   output: {

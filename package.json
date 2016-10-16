@@ -2,14 +2,14 @@
   "name": "sonhar",
   "version": "1.0.0",
   "description": "",
-  "main": "./app.js",
+  "main": "./run.js",
   "homepage": "",
   "author": "Vitor Lans",
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
-    "start": "node ./app.js",
-    "start-dev": "nodemon ./app.js"
+    "start": "node ./run.js",
+    "start-dev": "nodemon ./run.js"
   },
   "repository": {
     "type": "git",
@@ -23,17 +23,18 @@
     "javascript"
   ],
   "dependencies": {
-    "define-word": "^1.0.5",
+    "define-word-promise": "^1.0.6",
     "express": "^4.13.4",
-    "fetch": "^1.1.0",
+    "google-translate-api": "^2.2.2",
     "images-scraper": "^2.0.10",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-headroom": "^2.0.0",
     "react-helmet": "^3.1.0",
     "react-router": "^2.4.1"
   },
   "devDependencies": {
+    "fetch": "^1.1.0",
+    "react-headroom": "^2.0.0",
     "babel": "^6.5.2",
     "babel-cli": "^6.9.0",
     "babel-loader": "^6.2.4",
@@ -52,6 +53,6 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "engines": {
-    "node": "5.1.0"
+    "node": "6.8.1"
   }
 }

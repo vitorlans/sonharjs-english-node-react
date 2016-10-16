@@ -5,12 +5,12 @@ module.exports = {
   devtool: 'source-map',
 
   entry: [
-    './src/index'
+    './src/web/index'
   ],
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ['node_modules', 'src']
+    modulesDirectories: ['node_modules', 'web']
   },
 
   output: {

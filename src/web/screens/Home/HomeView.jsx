@@ -5,14 +5,15 @@ import { DictionaryWidget } from 'shared/components/DictionaryWidget';
 import { TranslateWidget } from 'shared/components/TranslateWidget';
 import { getImages } from 'actions/search';
 import { getDefine } from 'actions/dictionary';
-
+import { getTranslate } from 'actions/translate';
+import  WordLearnWidget  from 'shared/components/WordLearnWidget';
 
 export class HomeView extends Component {
        constructor(props) {
             super(props);
             
             this.state = {
-                searchWord: "This",
+                searchWord: "GO",
                 dataImages: [],
                 dataDefine: {}
             };
@@ -47,11 +48,19 @@ export class HomeView extends Component {
             }).catch(function(ex) {
                 console.log('parsing failed', ex)
             });
+
         }
 
         onSearch(wordSearch){
+            if(this.state.searchWord === wordSearch) return;
+            
             this.setState({searchWord: wordSearch});
             this.findServer(wordSearch);
+        }
+
+        onWordClick(word) {
+            this.setState({searchWord: word});
+            this.findServer(word);
         }
 
         render() {
@@ -62,7 +71,10 @@ export class HomeView extends Component {
                     <SearchWidget onSearch={this.onSearch.bind(this)} />
                </div>
                <div>
-                    <h1 className="w3-center">{this.state.searchWord}</h1>
+                    <WordLearnWidget word={this.state.searchWord} onWordClick={this.onWordClick.bind(this)}/>
+               </div>
+               <div>
+                    <h1 className="w3-center">{this.state.searchWord.toUpperCase()}</h1>
                </div>
                <div>
                     <h2>1. Experience:</h2>
@@ -76,13 +88,12 @@ export class HomeView extends Component {
                <div>
                     <DictionaryWidget word={this.state.searchWord} data={this.state.dataDefine} />
                </div>
-               {
-               /*<div className="app--margin-top">
+               <div className="app--margin-top">
                     <h2>3. Translate</h2>
                </div>
                <div>
-                    <TranslateWidget />
-               </div>*/}
+                    <TranslateWidget word={this.state.searchWord} to='pt' from='en' />
+               </div>
             </div>
         );
     }
