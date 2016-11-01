@@ -2,4 +2,3 @@ node_modules/*
 *.sublime-workspace
 *.log
 launchConfigurations/
-.vscode/*

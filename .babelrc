@@ -1,18 +1,15 @@
 {
   "presets": [
-    "es2015",
     "react",
+    "latest",
     "stage-0"
   ],
+  "plugins": [
+      ["module-resolver", {
+        "root": ["./src/web"]
+      }]
+  ],
   "env": {
-    "development": {
-      "plugins": [["react-transform", {
-        "transforms": [{
-          "transform": "react-transform-hmr",
-          "imports": ["react"],
-          "locals": ["module"]
-        }]
-      }]]
-    }
+
   }
 }

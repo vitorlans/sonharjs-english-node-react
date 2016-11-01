@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="708"
+   height="708"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="New document 1">
+  <defs
+     id="defs4">
+    <filter
+       inkscape:label="Drop Shadow"
+       id="filter3004"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0.5"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood3006" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite3008" />
+      <feGaussianBlur
+         stdDeviation="6"
+         result="blur"
+         id="feGaussianBlur3010" />
+      <feOffset
+         dx="4"
+         dy="4"
+         result="offset"
+         id="feOffset3012" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite3014" />
+    </filter>
+    <filter
+       inkscape:label="Drop Shadow"
+       id="filter3809"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0.5"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood3811" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite3813" />
+      <feGaussianBlur
+         stdDeviation="6"
+         result="blur"
+         id="feGaussianBlur3815" />
+      <feOffset
+         dx="4"
+         dy="4"
+         result="offset"
+         id="feOffset3817" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite3819" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="73.214584"
+     inkscape:cy="531.23608"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1030"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-46.71875,-200.5)">
+    <g
+       id="g3840">
+      <path
+         inkscape:export-ydpi="127.11864"
+         inkscape:export-xdpi="127.11864"
+         inkscape:export-filename="/home/dani/playbutton.png"
+         id="path2985"
+         d="m 400.71875,259.5 c -162.924,0 -295,132.076 -295,295 0,162.924 132.076,295 295,295 162.924,0 295,-132.076 295,-295 0,-162.924 -132.076,-295 -295,-295 z M 400.5,304.90625 c 138.07118,0 250,111.92882 250,250 0,138.07118 -111.92882,250 -250,250 -138.07118,0 -250,-111.92882 -250,-250 0,-138.07118 111.92882,-250 250,-250 z"
+         style="fill:#ffffff;fill-opacity:1;filter:url(#filter3809)"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:export-ydpi="127.11864"
+         inkscape:export-xdpi="127.11864"
+         inkscape:export-filename="/home/dani/playbutton.png"
+         sodipodi:nodetypes="csscc"
+         inkscape:connector-curvature="0"
+         id="path3002"
+         d="m 292.30226,448.32616 c 0.3658,0.14099 65.96223,25.6492 144.65128,56.68492 140.28421,55.32943 143.04867,56.43803 141.92419,56.91416 -1.90983,0.80866 -285.91158,109.96536 -286.58426,110.15066 0.31334,-71.23824 0.0134,-151.75885 0.009,-223.74974 z"
+         style="fill:#ffffff;fill-opacity:1;filter:url(#filter3004)" />
+    </g>
+  </g>
+</svg>

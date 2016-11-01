@@ -8,7 +8,11 @@ import { getDefine } from 'actions/dictionary';
 import { getTranslate } from 'actions/translate';
 import  WordLearnWidget  from 'shared/components/WordLearnWidget';
 
-export class HomeView extends Component {
+// import {bindActionCreators} from 'redux';
+// import {connect} from 'react-redux';
+// import * as actionTranslate from 'actions/translate';
+
+export default class HomeView extends Component {
        constructor(props) {
             super(props);
             
@@ -92,9 +96,25 @@ export class HomeView extends Component {
                     <h2>3. Translate</h2>
                </div>
                <div>
-                    <TranslateWidget word={this.state.searchWord} to='pt' from='en' />
+                    <TranslateWidget {...this.props} word={this.state.searchWord} to='pt' from='en' />
                </div>
             </div>
         );
     }
 }
+
+// function mapStateToProps(state) {
+//     return {
+//         translate: state.traslate
+//                    
+
+//     };
+// }
+
+// // Get actions and pass them as props to to UserList
+// //      > now UserList has this.props.selectUser
+// function matchDispatchToProps(dispatch){
+//     return bindActionCreators(actionTranslate, dispatch);
+// }
+
+// export default connect(mapStateToProps, matchDispatchToProps)(HomeView);

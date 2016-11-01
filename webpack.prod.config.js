@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -14,12 +15,13 @@ module.exports = {
   },
 
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'bundle.js',
-    publicPath: '/public/'
+    path: path.join(__dirname, 'public', 'js'),
+    filename: 'all.js',
+    publicPath: '/js'
   },
 
   plugins: [
+    new ExtractTextPlugin('../css/main.css'),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
@@ -42,9 +44,8 @@ module.exports = {
         include: path.join(__dirname, 'src')
       },
       {
-        test: /\.scss$/,
-        loaders: ["style", "css", "sass"],
-        include: path.join(__dirname, 'src', 'styles')
+        test: /\.scss/,
+        loader: ExtractTextPlugin.extract("style", "css!sass")
       },
       {
         test: /\.png$/,
@@ -57,12 +58,12 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel', // 'babel-loader' is also a legal name to reference
+        loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
         query: {
-          presets: ['es2015']
+          presets: ['latest']
         }
       },
-      { test: /\.css$/, loader: "style-loader!css-loader" },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
       { test: /\.png$/, loader: "url-loader?limit=100000" },
       { test: /\.jpg$/, loader: "file-loader" }
     ]

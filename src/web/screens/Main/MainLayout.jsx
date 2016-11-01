@@ -3,14 +3,7 @@ import { Router, Route, Link } from 'react-router';
 import { HeaderWidget } from './Header/HeaderWidget';
 import { FooterWidget } from './Footer/FooterWidget';
 
-export class MainLayout extends React.Component {
-    
-    constructor(props, context){
-      super(props, context);
-      this.state = {
-       
-      };
-    }
+export default class MainLayout extends React.Component {
        
     render(){
         return (

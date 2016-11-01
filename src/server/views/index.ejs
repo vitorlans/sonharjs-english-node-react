@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <html lang="pt-br">
   <head>
        <meta charset="utf-8" />
-       <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+       <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
        <meta http-equiv="X-UA-Compatible" content="IE=edge">
        <meta name="mobile-web-app-capable" content="yes">
        <meta name="apple-mobile-web-app-capable" content="yes">
@@ -9,9 +10,13 @@
        <meta name="format-detection" content="telephone=no">
        <meta name="application-name" content="sonhar">
        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>  
+       <link rel="stylesheet" href="/css/main.css"></link>
   </head>
   <body>
-    <div id="main"></div>
-    <script type="text/javascript" src="/public/bundle.js"></script>
+    <div id="main"><%- html %></div>
+    <script>
+        window.__initState__ = <%- reduxState %>
+    </script>
+    <script type="text/javascript" src="/js/all.js"></script>
   </body>
 </html>

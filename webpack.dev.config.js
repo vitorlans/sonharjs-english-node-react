@@ -15,9 +15,9 @@ module.exports = {
   },
 
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'bundle.js',
-    publicPath: '/public/'
+    path: path.join(__dirname, 'public', 'js'),
+    filename: 'all.js',
+    publicPath: '/js'
   },
 
   plugins: [
@@ -33,10 +33,9 @@ module.exports = {
         include: path.join(__dirname, 'src')
       },
       {
-        test: /\.scss$/,
-        loaders: ["style", "css", "sass"],
-        include: path.join(__dirname, 'src', 'styles')
-      },
+        test: /\.scss/,
+        loader: "style-loader!css-loader!sass-loader"
+       },
       {
         test: /\.png$/,
         loader: 'file'
@@ -48,9 +47,9 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel', // 'babel-loader' is also a legal name to reference
+        loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
         query: {
-          presets: ['es2015']
+          presets: ['latest']
         }
       },
       { test: /\.css$/, loader: "style-loader!css-loader" },

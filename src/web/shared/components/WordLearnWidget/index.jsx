@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 class WordLearnWidget extends Component {
-    
+
     constructor(props) {
         super(props);
         
@@ -10,7 +10,7 @@ class WordLearnWidget extends Component {
         };
     }
     
-    componentWillMount() {
+    componentDidMount() {
         let wordList = JSON.parse(localStorage.getItem("WordLearnList_SONHAR"));
         if(wordList)
             this.setState({"wordList": wordList});
