@@ -43,7 +43,7 @@ export class TranslateWidget extends Component {
         return (
             <div className="w3-card-2 w3-round">
 
-                <header className="w3-container w3-teal ">
+                <header className="w3-theme w3-container">
                     <h1></h1>
                 </header>
 

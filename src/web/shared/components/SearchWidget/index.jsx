@@ -58,7 +58,7 @@ export class SearchWidget extends Component {
                             />
                     </div>
                     <div className="w3-rest">
-                            <input type="button" className="w3-btn w3-round w3-large w3-teal" value="GO" onClick={this.onClick.bind(this)} />
+                            <input type="button" className="w3-theme w3-btn w3-round w3-large" value="GO" onClick={this.onClick.bind(this)} />
                     </div>
                 </div>
             </div>

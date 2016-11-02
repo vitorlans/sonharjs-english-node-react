@@ -84,7 +84,7 @@ export default class HomeView extends Component {
                     <h2>1. Experience:</h2>
                </div>
                <div>
-                    <ImageWidget data={this.state.dataImages} />
+                    <ImageWidget images={this.state.dataImages} />
                </div>
                <div className="app--margin-top">
                     <h2>2. Definition</h2>

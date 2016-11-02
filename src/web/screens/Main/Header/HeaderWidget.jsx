@@ -8,7 +8,7 @@ export class HeaderWidget extends React.Component {
     return ( 
       <div>  
           <Headroom>
-                <div className="w3-row w3-card-2 w3-teal app--padding header">
+                <div className="w3-theme w3-row w3-card-2 app--padding header">
                         <div className="w3-col l2 m2 s2 w3-padding-8">
                             <label className="w3-xxlarge" onClick={this.openMenu}>ME</label>
                         </div>
