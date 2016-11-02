@@ -25,7 +25,7 @@
   "dependencies": {
     "define-word-promise": "^1.0.6",
     "ejs": "^2.5.2",
-    "express": "^4.14.0",
+    "express": "^4.13.4",
     "google-translate-api": "^2.2.2",
     "images-scraper": "^2.0.10",
     "react": "^15.3.2",
