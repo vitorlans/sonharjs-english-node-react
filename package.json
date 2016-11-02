@@ -60,7 +60,7 @@
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.1",
     "whatwg-fetch": "^1.0.0"
-  }
+  },
   "engines": {
     "node": "7.0.0"
   }
