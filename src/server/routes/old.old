@@ -1,7 +1,0 @@
-import path from 'path';
-import ObjectStorage from 'bluemix-object-storage';
-
-let vcap_services = JSON.parse(process.env.VCAP_SERVICES);
-let credential = vcap_services["Object-Storage"][0].credentials;
-let os = new ObjectStorage(credential.userId, credential.password, credential.project_id, 'sonhar-db');
-
