@@ -18,3 +18,10 @@ const history = syncHistoryWithStore(browserHistory, store);
 ReactDOM.render(<Provider store={store}>
                 {routes(history)}
             </Provider>, document.getElementById('main'));
+
+if (process.env.NODE_ENV === 'production') {
+    var applyUpdate = require('offline-plugin/runtime').applyUpdate();
+    require('offline-plugin/runtime').install({
+        onUpdateReady: () => applyUpdate()
+    });
+}

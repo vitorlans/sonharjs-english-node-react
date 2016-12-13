@@ -1,11 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 
 module.exports = {
   devtool: 'source-map',
 
   entry: [
+    require.resolve('./polyfills'),
     './src/web/index'
   ],
 
@@ -15,16 +17,16 @@ module.exports = {
   },
 
   output: {
-    path: path.join(__dirname, 'public', 'js'),
-    filename: 'all.js',
-    publicPath: '/js'
+    path: path.join(__dirname, 'public'),
+    filename: 'js/all.js',
+    publicPath: '/'
   },
 
   plugins: [
-    new ExtractTextPlugin('../css/main.css'),
-    new webpack.ProvidePlugin({
-    'Promise': 'es6-promise', // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
-    'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    new ExtractTextPlugin('css/main.css'),
+    new OfflinePlugin({
+      excludes: ["images/*.png"],
+      ServiceWorker: { events: true }
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -44,8 +46,13 @@ module.exports = {
     loaders: [
       {
         test: /\.js?$/,
-        loader: 'babel',
+        loaders: ['babel-loader?presets=latest'],
         include: path.join(__dirname, 'src')
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loaders: ['babel-loader?presets=latest']
       },
       {
         test: /\.scss/,
@@ -58,14 +65,6 @@ module.exports = {
       {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file'
-      },
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
-        query: {
-          presets: ['latest']
-        }
       },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
       { test: /\.png$/, loader: "url-loader?limit=100000" },

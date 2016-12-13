@@ -1,4 +1,4 @@
-var defineWord = require("define-word-promise");
+import defineWord from 'define-word-promise';
 
 exports.defineByKeyword = function(req, res) {
 

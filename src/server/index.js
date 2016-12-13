@@ -1,17 +1,20 @@
-const path = require('path');
-const express = require('express');
-const image = require('./routes/image');
-const dictionary = require('./routes/dictionary');
-const translate = require('./routes/translate');
+import path from 'path';
+import express from 'express';
 
+//RENDER-REACT-SERVER-SIDE
+import React from 'react';
 import { RouterContext, match } from 'react-router';
 import createRoutes from '../web/shared/routes';
 import createMemoryHistory from 'history/lib/createMemoryHistory';
 import configureStore from '../web/shared/store';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
-import React from 'react';
-import fs from 'fs';
+
+//CONTROLLERS
+import image from './routes/image';
+import dictionary from './routes/dictionary';
+import translate from './routes/translate';
+import word from './routes/word';
 
 module.exports = {
   app: function () {
@@ -43,6 +46,7 @@ module.exports = {
     app.get("/api/image", image.imageByKeyword);
     app.get("/api/define", dictionary.defineByKeyword);
     app.get("/api/translate", translate.translateByKeyword);
+    app.get("/api/word", word.gettranslates);
 
     // app.get("/", (req, res) => { 
     //     var html = "";
@@ -64,7 +68,6 @@ module.exports = {
             } else if (renderProps === null) {
                 res.send(404, 'Not found');
             } else if (renderProps) {
-                //getReduxPromise(renderProps, store).then(() => {
                     const reduxState = JSON.stringify(store.getState()).replace(/</g, '\\x3c');
                     const html = ReactDOMServer.renderToString(
                         <Provider store={store}>
@@ -72,9 +75,6 @@ module.exports = {
                         </Provider>
                     );
                     res.render('index.ejs', { html, reduxState });
-                //}).catch(e => {
-                 //   console.log(e);
-                //});
             } else {
                 res.sendStatus(404);
             }
@@ -84,8 +84,3 @@ module.exports = {
     return app;
   }
 };
-
-function getReduxPromise(props, store) {
-    const comp = props.components[props.components.length - 1].WrappedComponent;
-    return Promise.resolve();
-}

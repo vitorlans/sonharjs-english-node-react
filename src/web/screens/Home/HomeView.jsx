@@ -92,12 +92,6 @@ export default class HomeView extends Component {
                <div>
                     <DictionaryWidget word={this.state.searchWord} data={this.state.dataDefine} />
                </div>
-               <div className="app--margin-top">
-                    <h2>3. Translate</h2>
-               </div>
-               <div>
-                    <TranslateWidget {...this.props} word={this.state.searchWord} to='pt' from='en' />
-               </div>
             </div>
         );
     }

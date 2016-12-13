@@ -13,7 +13,7 @@ export class HeaderWidget extends React.Component {
                             <label className="w3-xxlarge" onClick={this.openMenu}>ME</label>
                         </div>
                         <div className="w3-col l8 m8 s8 w3-center w3-padding-8">
-                            <img className="w3-center header--image" src="/image/playbutton.svg"></img>
+                            <img className="w3-center header--image" src="/images/playbutton.svg"></img>
                         </div>
                         <div className="w3-col l2 m2 s2 w3-padding-8">
                              <LinkWidget to='/dictation' className="w3-xxlarge w3-right">PLUS</LinkWidget> 
