@@ -19,9 +19,9 @@ ReactDOM.render(<Provider store={store}>
                 {routes(history)}
             </Provider>, document.getElementById('main'));
 
+// Install ServiceWorker and AppCache in the end since
+// it's not most important operation and if main code fails,
+// we do not want it installed
 if (process.env.NODE_ENV === 'production') {
-    var applyUpdate = require('offline-plugin/runtime').applyUpdate();
-    require('offline-plugin/runtime').install({
-        onUpdateReady: () => applyUpdate()
-    });
+  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 }
