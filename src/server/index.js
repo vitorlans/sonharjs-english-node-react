@@ -1,5 +1,6 @@
 import path from 'path';
 import express from 'express';
+import setting from '../../settings.config.js';
 
 //RENDER-REACT-SERVER-SIDE
 import React from 'react';
@@ -19,13 +20,11 @@ import word from './routes/word';
 module.exports = {
   app: function () {
     const app = express();
-    const publicPath = express.static(path.join(__dirname, '../../public'));
+    const appPath = express.static(setting.appPath);
 
     //CONFIG
     app.set('view engine', 'ejs');
-    app.set('views', path.join(__dirname, '/views'));
-    app.use(publicPath);
-
+    app.use(appPath);
 
     //WEBPACK
     if (process.env.NODE_ENV !== 'production') {
@@ -35,11 +34,14 @@ module.exports = {
       const config = require('../../webpack.dev.config.js');
       const compiler = webpack(config);
 
+      app.set('views', path.join(__dirname, '/views'));
       app.use(webpackHotMiddleware(compiler));
       app.use(webpackDevMiddleware(compiler, {
         noInfo: true,
         publicPath: config.output.publicPath
       }));
+    } else {
+       app.set('views', setting.appPath);
     }
 
     //ROUTES
@@ -47,12 +49,6 @@ module.exports = {
     app.get("/api/define", dictionary.defineByKeyword);
     app.get("/api/translate", translate.translateByKeyword);
     app.get("/api/word", word.gettranslates);
-
-    // app.get("/", (req, res) => { 
-    //     var html = "";
-    //     var reduxState = "";
-    //     res.render('index.ejs', {html, reduxState}); 
-    // });
 
     //SERVER RENDER
     app.use(function(req, res) {

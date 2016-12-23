@@ -1,4 +1,5 @@
 import 'shared/styles/app.scss';
+import 'w3css/w3.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -19,9 +20,6 @@ ReactDOM.render(<Provider store={store}>
                 {routes(history)}
             </Provider>, document.getElementById('main'));
 
-// Install ServiceWorker and AppCache in the end since
-// it's not most important operation and if main code fails,
-// we do not want it installed
 if (process.env.NODE_ENV === 'production') {
-  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+  require('offline-plugin/runtime').install();
 }

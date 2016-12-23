@@ -1,7 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
+const extractTextPlugin = require('extract-text-webpack-plugin');
+const offlinePlugin = require('offline-plugin');
+const copyWebpackPlugin = require('copy-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
+const setting = require('./settings.config.js');
 
 module.exports = {
   devtool: 'source-map',
@@ -17,17 +20,38 @@ module.exports = {
   },
 
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'js/all.js',
-    publicPath: '/'
+    path: setting.appPath,
+    filename: 'js/main-[hash].js',
+    publicPath: setting.publicPath
   },
 
   plugins: [
-    new ExtractTextPlugin('css/main.css'),
-    new OfflinePlugin({
-      excludes: ["images/*.png"],
-      ServiceWorker: { events: true }
-    }),
+    new copyWebpackPlugin([
+            { from: 'static' }
+    ]),
+    new extractTextPlugin('css/main-[hash].css'),
+    new offlinePlugin({
+			relativePaths: false,
+			updateStrategy: 'all',
+			version: '[hash]',
+			preferOnline: true,
+			safeToUseOptionalCaches: true,
+			caches: {
+				main: ['/', ':rest:'],
+				additional: [],
+				optional:[]
+			},
+			externals: [
+        'https://fonts.googleapis.com/icon?family=Material+Icons'
+			],
+			ServiceWorker: {
+				navigateFallbackURL: '/',
+				events: true
+			},
+			AppCache: {
+				FALLBACK: { '/': '/' }
+			}
+		}),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
@@ -39,6 +63,11 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
+    }),
+    new htmlWebpackPlugin({
+      template: '!!raw!'+ path.join(setting.templatePath, 'index.ejs'),
+      inject: 'body',
+      filename: 'index.ejs'
     })
   ],
 
@@ -46,17 +75,17 @@ module.exports = {
     loaders: [
       {
         test: /\.js?$/,
-        loaders: ['babel-loader?presets=latest'],
-        include: path.join(__dirname, 'src')
+        exclude: /(node_modules|bower_components)/,
+        loaders: ['babel-loader']
       },
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loaders: ['babel-loader?presets=latest']
+        loaders: ['babel-loader']
       },
       {
         test: /\.scss/,
-        loader: ExtractTextPlugin.extract("style", "css!sass")
+        loader: extractTextPlugin.extract("style", "css!sass")
       },
       {
         test: /\.png$/,
@@ -66,9 +95,9 @@ module.exports = {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file'
       },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
+      { test: /\.css$/, loader: extractTextPlugin.extract('style', 'css') },
       { test: /\.png$/, loader: "url-loader?limit=100000" },
-      { test: /\.jpg$/, loader: "file-loader" }
+      { test: /\.jpg$/, loader: "file-loader" },
     ]
   }
 };
