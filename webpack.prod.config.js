@@ -37,11 +37,10 @@ module.exports = {
 			preferOnline: true,
 			safeToUseOptionalCaches: true,
 			caches: {
-				main: ['/', ':rest:'],
-				additional: [],
-				optional:[]
-			},
+				main: ['/', ':rest:']
+      },
 			externals: [
+        '/',
         'https://fonts.googleapis.com/icon?family=Material+Icons'
 			],
 			ServiceWorker: {
@@ -67,7 +66,16 @@ module.exports = {
     new htmlWebpackPlugin({
       template: '!!raw!'+ path.join(setting.templatePath, 'index.ejs'),
       inject: 'body',
-      filename: 'index.ejs'
+      filename: 'index.ejs',
+      minify: { // Minifying it while it is parsed
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true
+      }
     })
   ],
 
@@ -97,7 +105,7 @@ module.exports = {
       },
       { test: /\.css$/, loader: extractTextPlugin.extract('style', 'css') },
       { test: /\.png$/, loader: "url-loader?limit=100000" },
-      { test: /\.jpg$/, loader: "file-loader" },
+      { test: /\.jpg$/, loader: "file-loader" }
     ]
   }
 };

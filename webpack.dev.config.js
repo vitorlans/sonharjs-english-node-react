@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const setting = require('./settings.config.js'); 
 const copyWebpackPlugin = require('copy-webpack-plugin');
-const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
@@ -20,7 +19,7 @@ module.exports = {
 
   output: {
     path: setting.appPath,
-    filename: 'js/main-[hash].js',
+    filename: 'js/main.js',
     publicPath: setting.publicPath
   },
 
@@ -28,11 +27,6 @@ module.exports = {
     new copyWebpackPlugin([
             { from: 'static' }
     ]),
-    new htmlWebpackPlugin({
-      template: '!!raw!'+ path.join(setting.templatePath, 'index.ejs'),
-      inject: 'body',
-      filename: 'index.ejs'
-    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],

@@ -21,13 +21,14 @@ module.exports = {
   app: function () {
     const app = express();
     const appPath = express.static(setting.appPath);
+    const isDevelopment = process.env.NODE_ENV !== 'production';
 
     //CONFIG
     app.set('view engine', 'ejs');
     app.use(appPath);
 
     //WEBPACK
-    if (process.env.NODE_ENV !== 'production') {
+    if (isDevelopment) {
       const webpack = require('webpack');
       const webpackDevMiddleware = require('webpack-dev-middleware');
       const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -70,7 +71,7 @@ module.exports = {
                             {<RouterContext {...renderProps} />}
                         </Provider>
                     );
-                    res.render('index.ejs', { html, reduxState });
+                    res.render('index.ejs', { html, reduxState, isDevelopment });
             } else {
                 res.sendStatus(404);
             }
