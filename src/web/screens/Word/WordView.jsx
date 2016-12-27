@@ -10,7 +10,7 @@ import { getTranslate } from 'actions/translate';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import { saveWord } from 'actions/save-word-action';
+import { saveWord, loadWords } from 'actions/saved-words-action';
 
 class WordView extends Component {
        constructor(props) {

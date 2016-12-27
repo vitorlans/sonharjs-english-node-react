@@ -4,3 +4,9 @@ export function saveWord(word) {
         word
     };
 }
+
+export function loadWords() {
+    return {
+        type:'LOAD_WORDS_DATA'
+    };
+}

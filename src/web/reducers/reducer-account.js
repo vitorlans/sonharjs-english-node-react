@@ -1,4 +1,5 @@
-export default function (state = { wordList: JSON.parse(localStorage.getItem("WordLearnList_SONHAR")) }, action) {
+export default function (state = { wordList: [] }, action) {
+    debugger
     switch (action.type) {
         case 'SAVE_WORD':
             if(!action.word) return state;
@@ -12,6 +13,9 @@ export default function (state = { wordList: JSON.parse(localStorage.getItem("Wo
                 localStorage.setItem("WordLearnList_SONHAR", JSON.stringify(wordList));
                 state.wordList = wordList;
             }
+            return state;
+        case 'LOAD_WORDS_DATA':
+            state.wordList = JSON.parse(localStorage.getItem("WordLearnList_SONHAR"));
             return state;
 
         default:

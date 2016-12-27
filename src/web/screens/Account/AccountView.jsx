@@ -5,7 +5,7 @@ import SavedWordsWidget from 'shared/components/SavedWordsWidget';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import { saveWord } from 'actions/save-word-action';
+import { saveWord, loadWords } from 'actions/saved-words-action';
 
 class AccountView extends Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class AccountView extends Component {
                     <Login />
                 </div>
                 <div className="w3-section">
-                    <SavedWordsWidget onWordClick={this.onWordClick} wordList={this.props.account.wordList} />
+                    <SavedWordsWidget onWordClick={this.onWordClick} wordList={this.props.account.wordList} loadWords={this.props.loadWords} saveWord =  {this.props.saveWord}/>
                 </div>
             </div>
         );
@@ -39,7 +39,7 @@ function mapStateToProps(state) {
 }
 
 function matchDispatchToProps(dispatch){
-    return bindActionCreators({saveWord : saveWord }, dispatch);
+    return bindActionCreators({saveWord : saveWord, loadWords: loadWords }, dispatch);
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(AccountView);

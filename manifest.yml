@@ -7,5 +7,3 @@ applications:
   instances: 1
   memory: 256M
   health-check-type: none
-  env:
-    ENABLE_BLUEMIX_DEV_MODE: "false"

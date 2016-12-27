@@ -10,22 +10,9 @@ class SavedWordsWidget extends Component {
         };
     }
     
-    componentWillReceiveProps(nextProps) {
-        if (this.props.word !== nextProps.word && nextProps.word) {
-            this.saveWord(nextProps.word);
-        }
-    }
-
-    saveWord(word){
-        var wordList = this.state.wordList;
-        let obj = wordList.find((element) => { 
-                return element === word;
-        });
-        
-        if(!obj){
-            wordList.push(word);
-            localStorage.setItem("WordLearnList_SONHAR", JSON.stringify(wordList));
-        }
+    componentDidMount() {
+        if(this.props.loadWords)
+            this.props.loadWords();
     }
     
     onSelect(obj){
