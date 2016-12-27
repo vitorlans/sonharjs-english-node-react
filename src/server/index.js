@@ -16,6 +16,7 @@ import image from './routes/image';
 import dictionary from './routes/dictionary';
 import translate from './routes/translate';
 import word from './routes/word';
+import { loginUser } from './routes/user'
 
 module.exports = {
   app: function () {
@@ -61,8 +62,9 @@ module.exports = {
     app.get("/api/define", dictionary.defineByKeyword);
     app.get("/api/translate", translate.translateByKeyword);
     app.get("/api/word", word.gettranslates);
+    app.get("/api/login", loginUser)
 
-    //SERVER RENDER
+    //SERVER RENDER''
     app.use(function(req, res) {
         const history = createMemoryHistory();
         const store = configureStore();
