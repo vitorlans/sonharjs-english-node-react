@@ -30,6 +30,7 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "cloudant": "^1.6.2",
     "define-word-promise": "^1.0.6",
     "dotenv": "^2.0.0",
     "ejs": "^2.5.5",
