@@ -1,5 +1,4 @@
 export default function (state = { wordList: [] }, action) {
-    debugger
     switch (action.type) {
         case 'SAVE_WORD':
             if(!action.word) return state;
