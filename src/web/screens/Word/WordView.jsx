@@ -1,25 +1,113 @@
 import React, {Component} from 'react';
+import { SearchWidget } from 'shared/components/SearchWidget';
+import { ImageWidget } from 'shared/components/ImageWidget';
+import { DictionaryWidget } from 'shared/components/DictionaryWidget';
+import { TranslateWidget } from 'shared/components/TranslateWidget';
+import { getImages } from 'actions/search';
+import { getDefine } from 'actions/dictionary';
+import { getTranslate } from 'actions/translate';
+
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
+import { saveWord } from 'actions/save-word-action';
 
 class WordView extends Component {
-    render() {
+       constructor(props) {
+            super(props);
+            
+            this.state = {
+                searchWord: "",
+                dataImages: [],
+                dataDefine: {}
+            };
+
+        }
+        
+        componentWillMount() {
+                
+        }
+                
+        componentDidMount() {
+            const queryParams = this.props.location.query;
+
+            if(queryParams && queryParams.w)
+                this.onSearch(queryParams.w);
+        }
+        
+        componentWillUnmount() {
+                
+        }
+
+        findServer(wordSearch){
+            let context = this;
+
+            if(!wordSearch)
+                return;
+
+            getImages(wordSearch).then(function(response) {
+                return response.json();
+            }).then(function(json) {
+                context.setState({dataImages: json});
+            }).catch(function(ex) {
+                console.log('parsing failed', ex);
+            });
+
+            getDefine(wordSearch).then(function(response) {
+                return response.json();
+            }).then(function(json) {
+                context.setState({dataDefine: json});
+            }).catch(function(ex) {
+                console.log('parsing failed', ex);
+            });
+
+        }
+
+        onSearch(wordSearch){
+            if(this.state.searchWord === wordSearch) return;
+            
+            this.setState({searchWord: wordSearch});
+            this.findServer(wordSearch);
+            this.props.saveWord(wordSearch);
+        }
+
+
+        render() {
+            
         return (
-            <div>
-                <SearchWidget></SearchWidget>
-                <div>
-                    <ImageWidget>
-                    </ImageWidget>
-                </div>
-                <div>
-                    <DictionaryWidget>
-                    </DictionaryWidget>
-                </div>
-                <div>
-                    <TranslateWidget>
-                    </TranslateWidget>
-                </div>
+            <div className="app--padding">
+            
+               <div className="w3-section">
+                    <SearchWidget onSearch={this.onSearch.bind(this)} />
+               </div>
+
+               <div  className="w3-section">
+                    <h2 className="w3-center">{this.state.searchWord.toUpperCase()}</h2>
+               </div>
+               <div className="w3-section">
+                    <h3>1. Experience:</h3>
+               </div>
+               <div className="w3-section">
+                    <ImageWidget images={this.state.dataImages} />
+               </div>
+               <div className="w3-section">
+                    <h3>2. Definition</h3>
+               </div>
+               <div  className="w3-section">
+                    <DictionaryWidget word={this.state.searchWord} data={this.state.dataDefine} />
+               </div>
             </div>
         );
     }
 }
 
-export default WordView;
+function mapStateToProps(state) {
+    return {
+    };
+}
+
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({saveWord : saveWord }, dispatch);
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(WordView);

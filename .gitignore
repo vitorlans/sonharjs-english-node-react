@@ -2,5 +2,6 @@ node_modules/*
 *.sublime-workspace
 *.log
 .env
+w.css
 dist/*
 launchConfigurations/

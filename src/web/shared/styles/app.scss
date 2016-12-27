@@ -5,21 +5,23 @@
 }
 
 .header {
-    height: 68px;
+    height: 28px;
 }
 
 .header--image{
-    max-width: 55px;
+    max-width: 56px;
 }
 
-
-.app--padding {
+.header--padding {
     padding-left: 16px;
     padding-right: 16px;
 }
 
-.app--center-block {
-    
+.app--padding {
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
 }
 
 .imagewidget--img{
@@ -32,6 +34,25 @@
     padding-right: 7px;
 }
 
-.app--margin-top {
-    margin-top: 48px!important;
+
+.login-container {
+    max-width: 384px!important;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.padding-right-2 {
+    padding-right: 2px;
+}
+
+.padding-left-2 {
+    padding-left: 2px;
+}
+
+.cursor--pointer {
+    cursor: pointer
+}
+
+.text-decoration--none {
+    text-decoration: none!important;
 }

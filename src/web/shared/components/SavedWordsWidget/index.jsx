@@ -1,21 +1,15 @@
 import React, {Component} from 'react';
 
-class WordLearnWidget extends Component {
+class SavedWordsWidget extends Component {
 
     constructor(props) {
         super(props);
         
         this.state = {
-            wordList: []
+            wordList: this.props.wordList
         };
     }
     
-    componentDidMount() {
-        let wordList = JSON.parse(localStorage.getItem("WordLearnList_SONHAR"));
-        if(wordList)
-            this.setState({"wordList": wordList});
-    }
-
     componentWillReceiveProps(nextProps) {
         if (this.props.word !== nextProps.word && nextProps.word) {
             this.saveWord(nextProps.word);
@@ -24,7 +18,7 @@ class WordLearnWidget extends Component {
 
     saveWord(word){
         var wordList = this.state.wordList;
-        let obj = this.state.wordList.find((element) => { 
+        let obj = wordList.find((element) => { 
                 return element === word;
         });
         
@@ -59,21 +53,27 @@ class WordLearnWidget extends Component {
     //<span class="w3-badge w3-green w3-margin-left ">5</span>
     render() {
         let rows = [];
+        if(this.state.wordList) {
+        this.state.wordList.reverse();
         this.state.wordList.map((obj, key) => {
-                                    rows.push(<li key={key} onClick={this.onSelect.bind(this, obj)}>{obj}
+                                    rows.push(<li className="w3-padding-16 cursor--pointer" key={key} onClick={this.onSelect.bind(this, obj)}>{obj}
                                     <span onClick={this.onRemove.bind(this, obj)} className="w3-closebtn w3-margin-right w3-medium">x</span>
                                     </li>);
                                 });
+        }
         return (
-            <div style={{"maxHeight": '150px', "overflow": 'auto'}} className="w3-row">
-                <div className="w3-col">
-                    <ul className="w3-ul w3-hoverable">
-                    {rows}
-                    </ul>
+            <div>
+                <h2><b>My Saved Words</b></h2>
+                <div className="w3-row">
+                    <div className="w3-col">
+                        <ul className="w3-ul w3-hoverable">
+                        {rows}
+                        </ul>
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
-export default WordLearnWidget;
+export default SavedWordsWidget;

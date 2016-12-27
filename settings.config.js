@@ -4,5 +4,6 @@ module.exports = {
     appPath: path.join(__dirname, '/dist'),
     staticPath: path.join(__dirname, '/static'),
     templatePath: path.join(__dirname, "/src/server/views"),
-    publicPath: "/"
+    publicPath: "/",
+    isDevelopment: process.env.NODE_ENV !== 'production'
 };

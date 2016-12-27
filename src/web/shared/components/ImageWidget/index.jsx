@@ -11,9 +11,9 @@ export class ImageWidget extends Component {
     }
 
     render() {
-        if(!this.props.images){
+        if(this.props.images.length === 0){
             return (<div>
-                        Images aren't available to this search.
+                        Images aren't available for this search.
                     </div>);
         }   
         

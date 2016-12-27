@@ -7,7 +7,7 @@ export default class MainLayout extends React.Component {
        
     render(){
         return (
-          <div id="row hold column collapse full-flex">
+          <div>
             <HeaderWidget></HeaderWidget>
             {this.props.children}
             <FooterWidget></FooterWidget>

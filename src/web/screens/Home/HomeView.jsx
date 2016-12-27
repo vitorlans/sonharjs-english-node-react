@@ -6,7 +6,6 @@ import { TranslateWidget } from 'shared/components/TranslateWidget';
 import { getImages } from 'actions/search';
 import { getDefine } from 'actions/dictionary';
 import { getTranslate } from 'actions/translate';
-import  WordLearnWidget  from 'shared/components/WordLearnWidget';
 
 // import {bindActionCreators} from 'redux';
 // import {connect} from 'react-redux';
@@ -26,72 +25,15 @@ export default class HomeView extends Component {
         componentWillMount() {
                 
         }
-                
-        componentDidMount() {
-            this.findServer(this.state.searchWord);
-        }
-        
-        componentWillUnmount() {
-                
-        }
-
-        findServer(wordSearch){
-            let context = this;
-            getImages(wordSearch).then(function(response) {
-                return response.json();
-            }).then(function(json) {
-                context.setState({dataImages: json});
-            }).catch(function(ex) {
-                console.log('parsing failed', ex)
-            });
-
-            getDefine(wordSearch).then(function(response) {
-                return response.json();
-            }).then(function(json) {
-                context.setState({dataDefine: json});
-            }).catch(function(ex) {
-                console.log('parsing failed', ex)
-            });
-
-        }
-
-        onSearch(wordSearch){
-            if(this.state.searchWord === wordSearch) return;
-            
-            this.setState({searchWord: wordSearch});
-            this.findServer(wordSearch);
-        }
-
-        onWordClick(word) {
-            this.setState({searchWord: word});
-            this.findServer(word);
-        }
 
         render() {
             
         return (
-            <div className="app--padding app--margin-top">
-               <div className="app--center-block">
-                    <SearchWidget onSearch={this.onSearch.bind(this)} />
-               </div>
-               <div>
-                    <WordLearnWidget word={this.state.searchWord} onWordClick={this.onWordClick.bind(this)}/>
-               </div>
-               <div>
-                    <h1 className="w3-center">{this.state.searchWord.toUpperCase()}</h1>
-               </div>
-               <div>
-                    <h2>1. Experience:</h2>
-               </div>
-               <div>
-                    <ImageWidget images={this.state.dataImages} />
-               </div>
-               <div className="app--margin-top">
-                    <h2>2. Definition</h2>
-               </div>
-               <div>
-                    <DictionaryWidget word={this.state.searchWord} data={this.state.dataDefine} />
-               </div>
+            <div className="app--padding">
+                <h1 className="w3-center">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non erat at dolor accumsan congue sit amet sodales massa. Praesent eu enim id odio finibus hendrerit. Praesent eget lacus luctus, imperdiet ipsum sit amet, sagittis turpis. Sed at dui euismod, elementum dui in, mollis arcu. Phasellus viverra cursus libero, molestie pulvinar tellus congue id. Curabitur eu tellus ut leo malesuada tempus at id purus. Sed viverra neque augue, ut egestas arcu rutrum quis.
+
+Pellentesque sed ipsum a lorem suscipit dictum. Sed velit lorem, congue sit amet elit auctor, malesuada luctus nibh. Praesent aliquet odio velit, sed rhoncus arcu lacinia id. Integer venenatis ligula quis bibendum vehicula. Maecenas mollis sit amet augue at mollis. Proin ullamcorper semper ultrices. Donec sodales nibh id nisi cursus congue. Etiam odio augue, iaculis eu pretium ut, mollis ut ipsum. Aenean hendrerit accumsan lacus, in commodo neque imperdiet ac. Nullam vestibulum aliquam urna a imperdiet. Donec tincidunt lacus turpis. Etiam ut rhoncus neque. Cras sit amet lectus lacus. </h1>
             </div>
         );
     }
