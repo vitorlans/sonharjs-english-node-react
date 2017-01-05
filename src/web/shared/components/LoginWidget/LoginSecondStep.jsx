@@ -21,10 +21,11 @@ class LoginSecondStep extends Component {
                 <form className="w3-container">
                     <p className="w3-center">
                         <label className="w3-text-theme">Enter password for vitor_hs@live.com</label>
+                        <input className="w3-input" type="email" name="email" style={{"display":"none"}}/>
                     </p>
                     <p>
                         <label className="w3-label w3-text-theme"><b>Password: </b></label>
-                        <input className="w3-input" type="password"/>
+                        <input className="w3-input" type="password" name="password"/>
                     </p>
                     
                     <div className="w3-row">

@@ -1,5 +1,9 @@
 import path from 'path';
 import express from 'express';
+import bodyParser  from 'body-parser';
+import morgan from 'morgan';
+import jwt from 'jsonwebtoken';
+
 import setting from '../../settings.config.js';
 
 //RENDER-REACT-SERVER-SIDE
@@ -16,7 +20,7 @@ import image from './routes/image';
 import dictionary from './routes/dictionary';
 import translate from './routes/translate';
 import word from './routes/word';
-import { loginUser } from './routes/user'
+import { loginUser, addWord, getWord } from './routes/account';
 
 module.exports = {
   app: function () {
@@ -26,9 +30,12 @@ module.exports = {
     //CONFIG
     app.set('view engine', 'ejs');
     app.use(appPath);
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
 
     //WEBPACK
     if (setting.isDevelopment) {
+      app.use(morgan("dev"));  
       const webpack = require('webpack');
       const webpackDevMiddleware = require('webpack-dev-middleware');
       const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -61,7 +68,9 @@ module.exports = {
     app.get("/api/define", dictionary.defineByKeyword);
     app.get("/api/translate", translate.translateByKeyword);
     app.get("/api/word", word.gettranslates);
-    app.get("/api/login", loginUser)
+    app.post("/api/login", loginUser);
+    app.post("/api/addword", addWord);
+    app.get("/api/getword", getWord);
 
     //SERVER RENDER''
     app.use(function(req, res) {
