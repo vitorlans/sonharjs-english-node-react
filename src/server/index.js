@@ -15,12 +15,13 @@ import configureStore from '../web/shared/store';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 
+
+//MIDDLEWARES
+import { authenticate, https } from './middlewares';
+
 //CONTROLLERS
-import image from './routes/image';
-import dictionary from './routes/dictionary';
-import translate from './routes/translate';
+import user from './routes/user';
 import word from './routes/word';
-import { loginUser, addWord, getWord } from './routes/account';
 
 module.exports = {
   app: function () {
@@ -51,26 +52,13 @@ module.exports = {
     } else {
        app.set('views', setting.appPath);
        app.enable('trust proxy');
-
-       app.use (function (req, res, next) {
-            if (req.secure) {
-                    // request was via https, so do no special handling
-                    next();
-            } else {
-                    // request was via http, so redirect to https
-                    res.redirect('https://' + req.headers.host + req.url);
-            }
-        });
+       app.use(https);
     }
+    app.set('view cache', true);
 
     //ROUTES
-    app.get("/api/image", image.imageByKeyword);
-    app.get("/api/define", dictionary.defineByKeyword);
-    app.get("/api/translate", translate.translateByKeyword);
-    app.get("/api/word", word.gettranslates);
-    app.post("/api/login", loginUser);
-    app.post("/api/addword", addWord);
-    app.get("/api/getword", getWord);
+    app.use("/api/user", user);
+    app.use("/api/word", word);
 
     //SERVER RENDER''
     app.use(function(req, res) {

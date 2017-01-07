@@ -1,6 +1,6 @@
 import db from './cloudant.db';
 
-export function getByCredential(credential){
+export function getUserByCredential(credential){
     let query = {
         "selector": {
             "credential": credential

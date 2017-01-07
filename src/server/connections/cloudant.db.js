@@ -6,7 +6,7 @@ let dbname = process.env.DATABASE_NAME;
 if(!cloudant_url)
 	throw "DATABASE_URL doesn't instanced in environment";
 if(!dbname)
-	throw "DATABASE_NAME doesn't instanced in enviroment";
+	throw "DATABASE_NAME doesn't instanced in environment";
 	
 //var services = {};
 // Check if services are bound to your project
