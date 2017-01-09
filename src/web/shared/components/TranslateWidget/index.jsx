@@ -4,7 +4,7 @@ export class TranslateWidget extends Component {
 
     render() {
         let rows = [];
-        if(this.props.translates !== undefined && this.props.translates.lenght > 0){
+        if(this.props.translates !== undefined && this.props.translates.length > 0){
             this.props.translates.map(function (trans , key) {
                 rows.push(<p key={key}>{key + 1}. {trans}</p>);
             }, this);

@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 export class DictionaryWidget extends Component {
     render() {
         let rows = [];
-        if(this.props.definitions !== undefined && this.props.definitions.lenght > 0){
+        if(this.props.definitions !== undefined && this.props.definitions.length > 0){
             this.props.definitions.map(function (def , key) {
                 rows.push(<p key={key}>{key + 1}. {def}</p>);
             }, this);
