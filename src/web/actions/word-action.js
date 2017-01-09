@@ -1,15 +1,19 @@
-export const SET_MY_SAVED_WORDS = 'SET_MY_SAVED_WORDS';
-export const SAVE_WORD = 'SAVE_WORD';
+import { SET_SEARCH_WORD, SET_MY_SAVED_WORDS, CHANGE_SEARCH_WORD } from './types';
 
-function handleResponse(response) {
-  if (response.ok) {
-    return response.json();
-  } else {
-    let error = new Error(response.statusText);
-    error.response = response;
-    throw error;
-  }
+export function changeSearchWord(word){
+      return {
+        type : CHANGE_SEARCH_WORD,
+        word
+      };
 }
+
+export function setSearchWord(data){
+    return {
+      type: "SET_SEARCH_WORD",
+      resultSearch: data
+    };
+}
+
 
 export function setMySaved(words) {
   return {
@@ -30,7 +34,7 @@ export function saveWord(data) {
   };
 }
 
-export function fetchWords() {
+export function fetchMyWords() {
   return dispatch => {
     fetch('/api/word/mysaved', {
         method:'get',
@@ -42,4 +46,24 @@ export function fetchWords() {
       .then(res => res.json())
       .then(data => dispatch(setMySaved(data)));
   };
+}
+
+export function fetchSearchWord(searchWord){
+      return dispatch => {
+          fetch("/api/word?keyword=" + searchWord, {
+          method:'get'
+        })
+        .then(res => res.json())
+        .then(data => dispatch(setSearchWord(data)));
+      };
+}
+
+function handleResponse(response) {
+  if (response.ok) {
+    return response.json();
+  } else {
+    let error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+  }
 }

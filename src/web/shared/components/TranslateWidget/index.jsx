@@ -3,17 +3,21 @@ import React, {Component} from 'react';
 export class TranslateWidget extends Component {
 
     render() {
+        let rows = [];
+        if(this.props.translates !== undefined && this.props.translates.lenght > 0){
+            this.props.translates.map(function (trans , key) {
+                rows.push(<p key={key}>{key + 1}. {trans}</p>);
+            }, this);
+        }else {
+            return <div>
+                It doesn't found any translation for this search.
+            </div>;
+         }
         return (
             <div className="w3-card-2 w3-round">
 
-                <header className="w3-theme w3-container">
-                    <h1></h1>
-                </header>
-
                 <div className="w3-container">
-                    <p></p>
-                    <hr/>
-                    <h5></h5>
+                    {rows}
                 </div>
 
             </div>

@@ -6,7 +6,7 @@ class SavedWordsWidget extends Component {
         super(props);
         
         this.state = {
-            wordList: this.props.wordList
+            wordList: []
         };
     }
     

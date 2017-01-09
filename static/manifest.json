@@ -1,8 +1,8 @@
 {
   "short_name": "Vocabulary Notebook",
   "name": "Vocabulary Notebook",
-  "theme_color": "#673AB8",
-	"background_color": "#F9F9F9",
+  "theme_color": "#795548",
+	"background_color": "#795548",
   "icons": [
     {
       "src": "images/icon-48x48.png",

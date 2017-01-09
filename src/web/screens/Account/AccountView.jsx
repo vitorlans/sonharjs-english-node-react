@@ -24,7 +24,7 @@ class AccountView extends Component {
                     <Login />
                 </div>
                 <div className="w3-section">
-                    <SavedWordsWidget onWordClick={this.onWordClick} wordList={this.props.account.wordList} />
+                    <SavedWordsWidget onWordClick={this.onWordClick}  />
                 </div>
             </div>
         );
@@ -33,7 +33,6 @@ class AccountView extends Component {
 
 function mapStateToProps(state) {
     return {
-        account: state.account
     };
 }
 

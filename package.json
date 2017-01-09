@@ -47,14 +47,17 @@
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^1.0.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "promise": "7.1.1",
+    "whatwg-fetch": "^2.0.1",
+    "object-assign": "4.1.0",
+    "babel-polyfill": "^6.20.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-module-resolver": "^2.4.0",
-    "babel-polyfill": "^6.20.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
@@ -64,9 +67,7 @@
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.24.1",
     "node-sass": "^4.1.1",
-    "object-assign": "4.1.0",
     "offline-plugin": "^4.5.4",
-    "promise": "7.1.1",
     "raw-loader": "^0.5.1",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
@@ -74,8 +75,7 @@
     "w3-css": "^2.8.5",
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.9.0",
-    "webpack-hot-middleware": "^2.13.2",
-    "whatwg-fetch": "^2.0.1"
+    "webpack-hot-middleware": "^2.13.2"
   },
   "engines": {
     "node": "6.9.2"

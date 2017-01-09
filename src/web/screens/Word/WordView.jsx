@@ -6,18 +6,13 @@ import { TranslateWidget } from 'shared/components/TranslateWidget';
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-
+import { fetchSearchWord, changeSearchWord } from 'actions/word-action';
 
 class WordView extends Component {
        constructor(props) {
             super(props);
             
-            this.state = {
-                searchWord: "",
-                dataImages: [],
-                dataDefine: {}
-            };
-
+            this.onSearch = this.onSearch.bind(this);
         }
         
         componentWillMount() {
@@ -35,35 +30,12 @@ class WordView extends Component {
                 
         }
 
-        findServer(wordSearch){
-            let context = this;
-
-            if(!wordSearch)
-                return;
-
-            getImages(wordSearch).then(function(response) {
-                return response.json();
-            }).then(function(json) {
-                context.setState({dataImages: json});
-            }).catch(function(ex) {
-                console.log('parsing failed', ex);
-            });
-
-            getDefine(wordSearch).then(function(response) {
-                return response.json();
-            }).then(function(json) {
-                context.setState({dataDefine: json});
-            }).catch(function(ex) {
-                console.log('parsing failed', ex);
-            });
-
-        }
 
         onSearch(wordSearch){
-            if(this.state.searchWord === wordSearch) return;
+            if(this.props.word.searchWord === wordSearch) return;
             
-            this.setState({searchWord: wordSearch});
-            this.findServer(wordSearch);
+            this.props.changeSearchWord(wordSearch);
+            this.props.fetchSearchWord(wordSearch);
         }
 
 
@@ -73,23 +45,29 @@ class WordView extends Component {
             <div className="app--padding">
             
                <div className="w3-section">
-                    <SearchWidget onSearch={this.onSearch.bind(this)} />
+                    <SearchWidget onSearch={this.onSearch} />
                </div>
 
                <div  className="w3-section">
-                    <h2 className="w3-center">{this.state.searchWord.toUpperCase()}</h2>
+                    <h2 className="w3-center">{this.props.word.searchWord.toUpperCase()}</h2>
                </div>
                <div className="w3-section">
                     <h3>1. Experience:</h3>
                </div>
                <div className="w3-section">
-                    <ImageWidget images={this.state.dataImages} />
+                    <ImageWidget images={this.props.word.resultSearch.images} />
                </div>
                <div className="w3-section">
                     <h3>2. Definition</h3>
                </div>
                <div  className="w3-section">
-                    <DictionaryWidget word={this.state.searchWord} data={this.state.dataDefine} />
+                    <DictionaryWidget definitions={this.props.word.resultSearch.definitions} />
+               </div>
+               <div className="w3-section">
+                    <h3>3. Translation</h3>
+               </div>
+                <div  className="w3-section">
+                    <TranslateWidget translates={this.props.word.resultSearch.translates} />
                </div>
             </div>
         );
@@ -98,8 +76,12 @@ class WordView extends Component {
 
 function mapStateToProps(state) {
     return {
+        word: state.word
     };
 }
 
+function matchDispatchToProps(dispatch){
+   return bindActionCreators({ "changeSearchWord": changeSearchWord, "fetchSearchWord" :fetchSearchWord }, dispatch);
+}
 
-export default connect(mapStateToProps)(WordView);
+export default connect(mapStateToProps, matchDispatchToProps)(WordView);

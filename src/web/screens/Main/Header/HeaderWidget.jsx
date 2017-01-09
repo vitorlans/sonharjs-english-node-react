@@ -13,10 +13,10 @@ export class HeaderWidget extends React.Component {
                             <LinkWidget className="w3-xxlarge" to='/account' ><i className="fa fa-user-circle-o" aria-hidden="true"></i></LinkWidget>
                         </div>
                         <div className="w3-col s8 w3-center">
-                            <img className="w3-center header--image" src="/images/playbutton.svg"></img>
+                            <LinkWidget to='/'><img className="w3-center header--image" src="/images/playbutton.svg"></img> </LinkWidget>
                         </div>
                         <div className="w3-col s2">
-                             <LinkWidget to='/word' className="w3-xxlarge w3-right text-decoration--none"><b>PLUS</b></LinkWidget> 
+                             <LinkWidget to='/word' className="w3-xxlarge w3-right text-decoration--none"><b>W</b></LinkWidget> 
                         </div>
                  </div>
             </Headroom>

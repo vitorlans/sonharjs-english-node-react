@@ -1,5 +1,4 @@
-
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
@@ -7,12 +6,21 @@ import thunk from 'redux-thunk';
 import allReducers from 'reducers/index';
 
 export default function configureStore(initialState) {
+
+    const composeEnhancers =
+        process.env.NODE_ENV !== 'production' ?   
+        composeWithDevTools
+        : compose;
+
+    const enhancer = composeEnhancers(
+        applyMiddleware(thunk)
+    );
+
+
     const store = createStore(
         allReducers,
         initialState,
-        composeWithDevTools(
-            applyMiddleware(thunk)
-        )
+        enhancer
     );
 
     return store;
