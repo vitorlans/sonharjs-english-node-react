@@ -7,7 +7,7 @@
   "author": "Vitor Lans",
   "license": "MIT",
   "scripts": {
-    "build-server": "./node_modules/.bin/babel src --out-dir build --source-maps inline --copy-files",
+    "build-server": "babel src --out-dir build --source-maps inline --copy-files",
     "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
     "start": "node ./run.js",
     "start-dev": "nodemon --watch src/server ./run.js"
@@ -50,6 +50,7 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-module-resolver": "^2.4.0",
