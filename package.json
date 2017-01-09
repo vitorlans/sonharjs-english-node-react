@@ -7,7 +7,7 @@
   "author": "Vitor Lans",
   "license": "MIT",
   "scripts": {
-    "build-server": "babel src --out-dir build --source-maps inline --copy-files",
+    "build-server": "./node_modules/.bin/babel src --out-dir build --source-maps inline --copy-files",
     "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
     "start": "node ./run.js",
     "start-dev": "nodemon --watch src/server ./run.js"
