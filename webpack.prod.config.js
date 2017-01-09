@@ -1,3 +1,5 @@
+'use strict';
+
 const path = require('path');
 const webpack = require('webpack');
 const extractTextPlugin = require('extract-text-webpack-plugin');
@@ -11,7 +13,7 @@ module.exports = {
 
   entry: [
     require.resolve('./polyfills'),
-    './src/web/index'
+    './build/web/index'
   ],
 
   resolve: {
@@ -37,7 +39,7 @@ module.exports = {
 			preferOnline: true,
 			safeToUseOptionalCaches: true,
 			caches: {
-				main: ['/', ':rest:']
+				main: ['/', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', ':rest:']
       },
 			externals: [
         '/',

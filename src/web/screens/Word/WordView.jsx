@@ -3,14 +3,10 @@ import { SearchWidget } from 'shared/components/SearchWidget';
 import { ImageWidget } from 'shared/components/ImageWidget';
 import { DictionaryWidget } from 'shared/components/DictionaryWidget';
 import { TranslateWidget } from 'shared/components/TranslateWidget';
-import { getImages } from 'actions/search';
-import { getDefine } from 'actions/dictionary';
-import { getTranslate } from 'actions/translate';
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import { saveWord, loadWords } from 'actions/saved-words-action';
 
 class WordView extends Component {
        constructor(props) {
@@ -68,7 +64,6 @@ class WordView extends Component {
             
             this.setState({searchWord: wordSearch});
             this.findServer(wordSearch);
-            this.props.saveWord(wordSearch);
         }
 
 
@@ -106,8 +101,5 @@ function mapStateToProps(state) {
     };
 }
 
-function matchDispatchToProps(dispatch){
-    return bindActionCreators({saveWord : saveWord }, dispatch);
-}
 
-export default connect(mapStateToProps, matchDispatchToProps)(WordView);
+export default connect(mapStateToProps)(WordView);

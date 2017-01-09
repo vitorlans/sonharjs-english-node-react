@@ -1,5 +1,5 @@
 import 'shared/styles/app.scss';
-import 'w3css/w3.css';
+import 'w3-css/w3.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

@@ -1,12 +1,17 @@
-require('babel-core/register');
-require('babel-polyfill');
+'use strict';
+require('./polyfills');
 const setting = require("./settings.config");
 
-if(setting.isDevelopment)
+var Server;
+if(setting.isDevelopment){
     require('dotenv').config();
+    require("babel-core/register");
+    Server = require('./src/server/index');
+} else {
+    Server = require("./build/server/index");
+}
 
-const Server = require('./src/server/index.js');
-const port = (process.env.PORT || 8080);
+const port = process.env.PORT || 8080;
 const app = Server.app();
 
 app.listen(port);

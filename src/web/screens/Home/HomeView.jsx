@@ -3,13 +3,9 @@ import { SearchWidget } from 'shared/components/SearchWidget';
 import { ImageWidget } from 'shared/components/ImageWidget';
 import { DictionaryWidget } from 'shared/components/DictionaryWidget';
 import { TranslateWidget } from 'shared/components/TranslateWidget';
-import { getImages } from 'actions/search';
-import { getDefine } from 'actions/dictionary';
-import { getTranslate } from 'actions/translate';
 
 // import {bindActionCreators} from 'redux';
 // import {connect} from 'react-redux';
-// import * as actionTranslate from 'actions/translate';
 
 export default class HomeView extends Component {
        constructor(props) {
