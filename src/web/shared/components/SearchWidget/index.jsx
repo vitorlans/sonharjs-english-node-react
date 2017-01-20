@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
+import { keyCodes } from '../../utils/keyCodes';
 
-
-const keyCodes = {
-  ENTER: 13,
-  ESCAPE: 27,
-  UP: 38,
-  DOWN: 40
-};
 
 export class SearchWidget extends Component {
     constructor(props) {

@@ -60,7 +60,6 @@ router.post("/add", authenticate, (req, res) => {
     };
 
         getUserByCredential(req.currentUser.credential).then((resp) => {
-            console.log(resp);
             if (isEmpty(resp.docs)) 
                 res.json({success: false, message: 'User not found.'});
             else {

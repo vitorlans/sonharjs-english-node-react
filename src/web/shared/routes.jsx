@@ -4,7 +4,6 @@ import MainLayout from 'screens/Main/MainLayout';
 import AccountView from 'screens/Account/AccountView';
 import HomeView  from 'screens/Home/HomeView';
 import WordView  from 'screens/Word/WordView';
-import DictationView  from 'screens/Dictation/DictationView';
 import NotFound from 'screens/NotFound/index';
 
 
@@ -13,7 +12,6 @@ var routes = (history) =>
         <Router history={history}>
             <Route component={MainLayout}>
                 <Route path="/" component={HomeView} />
-                <Route path="/dictation" component={DictationView} />
                 <Route path="/account" component={AccountView} />
                 <Route path="/word" component={WordView}/>
                 <Route path="*" component={NotFound} />

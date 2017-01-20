@@ -1,19 +1,17 @@
-import { SET_CURRENT_USER } from '../actions/types';
+import { SET_MY_SAVED_WORDS } from '../actions/types';
 import isEmpty from 'lodash/isEmpty';
 
 const initialState = {
-  isAuthenticated: false,
-  user: {}
+  wordList: []
 };
 
 export default function(state = initialState, action){
 
     switch(action.type){
 
-        case SET_CURRENT_USER:
+        case SET_MY_SAVED_WORDS:
             return Object.assign({}, state, {
-                isAuthenticated: !isEmpty(action.user),
-                user: action.user
+                wordList: action.words
             });
 
         default:

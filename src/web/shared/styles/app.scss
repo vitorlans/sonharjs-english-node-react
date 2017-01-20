@@ -1,4 +1,8 @@
 @import "./w3-theme-brown.css";
+html {
+    position: relative;
+    min-height: 100%;
+}
 
 .header--backgroud {
     background: wheat
@@ -8,7 +12,7 @@
     height: 28px;
 }
 
-.header--image{
+.header--image {
     max-width: 56px;
 }
 
@@ -21,11 +25,11 @@
     padding-top: 16px;
     padding-left: 16px;
     padding-right: 16px;
-    padding-bottom: 16px;
+    padding-bottom: 50px;
 }
 
-.imagewidget--img{
-    width:100%;
+.imagewidget--img {
+    width: 100%;
     cursor: pointer;
 }
 
@@ -33,7 +37,6 @@
     padding-bottom: 12px;
     padding-right: 7px;
 }
-
 
 .login-container {
     max-width: 384px!important;
@@ -49,10 +52,26 @@
     padding-left: 2px;
 }
 
+.padding-sides-2 {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
 .cursor--pointer {
     cursor: pointer
 }
 
 .text-decoration--none {
     text-decoration: none!important;
+}
+
+.footer a {
+    text-decoration: none;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }

@@ -6,7 +6,7 @@ import { TranslateWidget } from 'shared/components/TranslateWidget';
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import { fetchSearchWord, changeSearchWord } from 'actions/word-action';
+import { fetchSearchWord, changeSearchWord, saveWord } from 'actions/word-action';
 
 class WordView extends Component {
        constructor(props) {
@@ -35,7 +35,25 @@ class WordView extends Component {
             if(this.props.word.searchWord === wordSearch) return;
             
             this.props.changeSearchWord(wordSearch);
-            this.props.fetchSearchWord(wordSearch);
+            this.props.fetchSearchWord(wordSearch).then(() => {
+                const { isAuthenticated } = this.props.user;
+
+                if(isAuthenticated) {
+                    const { wordList } = this.props.account;
+                    let obj = wordList.find((element) => { 
+                            return element.sentence.toUpperCase() === wordSearch.toUpperCase();
+                    });
+                    
+                    if(!obj){
+                        let data = {
+                            sentence: this.props.word.resultSearch.word,
+                            translation: this.props.word.resultSearch.translates.length > 0 ? this.props.word.resultSearch.translates.toString() : ""
+                        };
+                        this.props.saveWord(data);
+                    }
+                }
+            });
+            
         }
 
 
@@ -76,12 +94,14 @@ class WordView extends Component {
 
 function mapStateToProps(state) {
     return {
+        user: state.user,
+        account : state.account,
         word: state.word
     };
 }
 
 function matchDispatchToProps(dispatch){
-   return bindActionCreators({ "changeSearchWord": changeSearchWord, "fetchSearchWord" :fetchSearchWord }, dispatch);
+   return bindActionCreators({ "changeSearchWord": changeSearchWord, "fetchSearchWord" :fetchSearchWord, saveWord }, dispatch);
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(WordView);

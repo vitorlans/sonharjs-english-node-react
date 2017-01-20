@@ -13,7 +13,6 @@ router.post("/auth", (req, res) => {
             res.json({success: false, message: 'Authentication failed. User not found.'});
         else {
             let user = new User(resp.docs[0].name, resp.docs[0].credential, resp.docs[0].passkey);
-            console.log(user);
             if (user) {
                 // check if password matches
                 if (user.passkey !== req.body.password) {
