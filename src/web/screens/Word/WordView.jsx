@@ -46,8 +46,8 @@ class WordView extends Component {
                     
                     if(!obj){
                         let data = {
-                            sentence: this.props.word.resultSearch.word,
-                            translation: this.props.word.resultSearch.translates.length > 0 ? this.props.word.resultSearch.translates.toString() : ""
+                            sentence: this.props.word.resultSearch.word.toLowerCase(),
+                            translation: this.props.word.resultSearch.translates.length > 0 ? this.props.word.resultSearch.translates.join(" ") : ""
                         };
                         this.props.saveWord(data);
                     }

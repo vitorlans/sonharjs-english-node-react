@@ -1,8 +1,17 @@
+import cookie from 'react-cookie';
 import {SET_CURRENT_USER} from './types';
 
 export function setCurrentUser(user) {
     return {type: SET_CURRENT_USER, user};
 }
+
+export function logout(){
+    return dispatch => {
+        cookie.remove('jwtToken');
+        dispatch(setCurrentUser({}));
+    };
+}
+
 
 export function login(data) {
     return dispatch => {
@@ -17,7 +26,7 @@ export function login(data) {
         .then(data => {
             if(data.success){
                 const token = data.token;
-                localStorage.setItem('jwtToken', token);
+                cookie.save('jwtToken', token);
                 dispatch(setCurrentUser(data.user));
             }
         });

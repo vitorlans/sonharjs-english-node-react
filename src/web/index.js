@@ -12,9 +12,21 @@ import { browserHistory } from 'react-router';
 import { syncHistoryWithStore} from 'react-router-redux';
 
 import configureStore from 'shared/store';
+import jwtDecode from 'jwt-decode';
 
 const store = configureStore(window.__initState__);
 const history = syncHistoryWithStore(browserHistory, store);
+
+import {setCurrentUser} from './actions/user-action';
+import {fetchMyWords} from './actions/word-action';
+
+import cookie from 'react-cookie';
+
+// const token = cookie.load('jwtToken');
+// if (token) {
+//   store.dispatch(setCurrentUser(jwtDecode(token)));
+//   store.dispatch(fetchMyWords());
+// }
 
 ReactDOM.render(<Provider store={store}>
                 {routes(history)}

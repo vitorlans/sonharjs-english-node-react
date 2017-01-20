@@ -1,3 +1,4 @@
+import cookie from 'react-cookie';
 import {SET_SEARCH_WORD, SET_MY_SAVED_WORDS, CHANGE_SEARCH_WORD} from './types';
 
 export function changeSearchWord(word) {
@@ -19,7 +20,24 @@ export function saveWord(data) {
       body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json; charset=utf-8",
-          "Authorization": "Bearer " + localStorage.jwtToken
+          "Authorization": "Bearer " + cookie.load('jwtToken')
+        }
+      })
+      .then(handleResponse)
+      .then(data => {
+        dispatch(fetchMyWords());
+      });
+  };
+}
+
+export function removeWord(data) {
+  return dispatch => {
+    return fetch('/api/word/add', {
+      method: 'post',
+      body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "Authorization": "Bearer " + cookie.load('jwtToken')
         }
       })
       .then(handleResponse)
@@ -31,11 +49,11 @@ export function saveWord(data) {
 
 export function fetchMyWords() {
   return dispatch => {
-    fetch('/api/word/mysaved', {
+    return fetch('/api/word/mysaved', {
         method: 'get',
         headers: {
           "Content-Type": "application/json; charset=utf-8",
-          "Authorization": "Bearer " + localStorage.jwtToken
+          "Authorization": "Bearer " + cookie.load('jwtToken')
         }
       })
       .then(res => res.json())

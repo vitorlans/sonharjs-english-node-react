@@ -7,6 +7,8 @@ import isEmpty from 'lodash/isEmpty';
 let router = express.Router();
 
 router.post("/auth", (req, res) => {
+    if(!req.body.credential){ return res.status(400).send({ message: "Credential is required" }); }
+    if(!req.body.password){ return res.status(400).send({ message: "Password is required" }); }
 
     getUserByCredential(req.body.credential).then((resp) => {
         if (isEmpty(resp.docs)) 

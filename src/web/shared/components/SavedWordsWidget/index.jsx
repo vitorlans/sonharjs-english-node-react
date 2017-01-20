@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import _ from 'lodash';
 
 class SavedWordsWidget extends Component {
 
@@ -23,41 +24,25 @@ class SavedWordsWidget extends Component {
     
     onRemove(obj, event) {
         event.stopPropagation();
-
-        // var wordList = this.state.wordList; let index = wordList.findIndex((element)
-        // => {         return element === obj; }); if(index >= 0) {
-        // wordList.splice(index, 1);     this.setState({"wordList" : wordList});
-        // localStorage.setItem("WordLearnList_SONHAR", JSON.stringify(wordList)); }
     }
 
     // onclick="this.parentElement.style.display='none'" <span class="w3-badge
     // w3-green w3-margin-left ">5</span>
     render() {
         let rows = [];
-        if (this.state.wordList) {
-            this
-                .state
-                .wordList
-                .reverse();
-            this
-                .state
-                .wordList
-                .map((obj, key) => {
+        if (this.state.wordList) {     
+            this.state.wordList.map((obj, key) => {
                     rows.push(
                         <li
-                            className="w3-padding-16 cursor--pointer"
+                            className="cursor--pointer"
                             key={key}
-                            onClick={this
-                            .onSelect
-                            .bind(this, obj)}>
+                            onClick={this.onSelect.bind(this, obj)}>
                             <span
-                                onClick={this
-                                .onRemove
-                                .bind(this, obj)}
-                                className="w3-closebtn  w3-padding">&times;</span>
+                                onClick={this.onRemove.bind(this, obj)}
+                                className="w3-closebtn w3-padding">&times;</span>
 
-                            <span className="w3-xlarge">{obj.sentence}</span><br/>
-                            <span>{obj.translation}r</span>
+                            <span className="w3-xlarge">{obj.sentence.toUpperCase()}</span><br/>
+                            <span>{obj.translation}</span>
                         </li>
                     );
                 });
