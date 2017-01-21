@@ -1,5 +1,6 @@
 import cookie from 'react-cookie';
 import {SET_CURRENT_USER} from './types';
+import { setMySaved } from './word-action';
 
 export function setCurrentUser(user) {
     return {type: SET_CURRENT_USER, user};
@@ -9,6 +10,7 @@ export function logout(){
     return dispatch => {
         cookie.remove('jwtToken');
         dispatch(setCurrentUser({}));
+        dispatch(setMySaved([]));
     };
 }
 

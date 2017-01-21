@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import _ from 'lodash';
 
 class SavedWordsWidget extends Component {
 
@@ -7,8 +6,8 @@ class SavedWordsWidget extends Component {
         super(props);
 
         this.state = {
-            wordList: this.props.wordList
-                ? this.props.wordList
+            wordList: this.props.wordList && this.props.wordList instanceof Array
+                ? this.props.wordList.reverse()
                 : []
         };
     }
@@ -24,10 +23,11 @@ class SavedWordsWidget extends Component {
     
     onRemove(obj, event) {
         event.stopPropagation();
+
+        if(this.props.onRemove)
+            this.props.onRemove(obj);
     }
 
-    // onclick="this.parentElement.style.display='none'" <span class="w3-badge
-    // w3-green w3-margin-left ">5</span>
     render() {
         let rows = [];
         if (this.state.wordList) {     
@@ -36,7 +36,7 @@ class SavedWordsWidget extends Component {
                         <li
                             className="cursor--pointer"
                             key={key}
-                            onClick={this.onSelect.bind(this, obj)}>
+                            onClick={this.onSelect.bind(this, obj)} >
                             <span
                                 onClick={this.onRemove.bind(this, obj)}
                                 className="w3-closebtn w3-padding">&times;</span>
@@ -63,5 +63,11 @@ class SavedWordsWidget extends Component {
         );
     }
 }
+
+SavedWordsWidget.propTypes = {
+    wordList: React.PropTypes.array.isRequired,
+    onWordClick: React.PropTypes.func,
+    onRemove: React.PropTypes.func
+};
 
 export default SavedWordsWidget;

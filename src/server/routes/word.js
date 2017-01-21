@@ -96,7 +96,7 @@ router.post("/add", authenticate, (req, res) => {
             }
 
             insertDocument(user).then((data) => {
-                res.send(data);
+                res.send(user.words);
             });
 
         }
@@ -130,10 +130,10 @@ router.get("/remove", authenticate, (req, res) => {
                         .splice(index, 1);
                 }
                 insertDocument(user).then((data) => {
-                    res.sendStatus(200);
+                    res.send(user.words);
                 });
             } else {
-                res.sendStatus(200);
+                res.send([]);
             }
 
         }

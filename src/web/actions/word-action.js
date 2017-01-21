@@ -25,16 +25,15 @@ export function saveWord(data) {
       })
       .then(handleResponse)
       .then(data => {
-        dispatch(fetchMyWords());
+        dispatch(setMySaved(data));
       });
   };
 }
 
-export function removeWord(data) {
+export function removeWord(sentence) {
   return dispatch => {
-    return fetch('/api/word/add', {
-      method: 'post',
-      body: JSON.stringify(data),
+    return fetch('/api/word/remove?sentence='+ sentence, {
+      method: 'get',
         headers: {
           "Content-Type": "application/json; charset=utf-8",
           "Authorization": "Bearer " + cookie.load('jwtToken')
@@ -42,7 +41,7 @@ export function removeWord(data) {
       })
       .then(handleResponse)
       .then(data => {
-        dispatch(fetchMyWords());
+        dispatch(setMySaved(data));
       });
   };
 }
