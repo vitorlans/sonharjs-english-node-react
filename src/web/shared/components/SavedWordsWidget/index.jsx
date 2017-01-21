@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import sortBy from 'lodash/sortBy';
 
 class SavedWordsWidget extends Component {
 
@@ -7,13 +8,21 @@ class SavedWordsWidget extends Component {
 
         this.state = {
             wordList: this.props.wordList && this.props.wordList instanceof Array
-                ? this.props.wordList.reverse()
+                ? this.organize(this.props.wordList)
                 : []
         };
     }
 
+
     componentWillReceiveProps(nextProps) {
-        this.setState({wordList: nextProps.wordList});
+        this.setState({wordList: this.organize(nextProps.wordList)});
+    }
+
+
+    organize(wordList){
+        let list = sortBy(wordList);
+        list.reverse();
+        return list;
     }
 
     onSelect(obj) {
@@ -50,7 +59,7 @@ class SavedWordsWidget extends Component {
         return (
             <div>
                 <h2>
-                    <b>My Saved Words</b>
+                    <b className="w3-text-theme">My Saved Words</b>
                 </h2>
                 <div className="w3-row">
                     <div className="w3-col">
@@ -65,7 +74,11 @@ class SavedWordsWidget extends Component {
 }
 
 SavedWordsWidget.propTypes = {
-    wordList: React.PropTypes.array.isRequired,
+    wordList: React.PropTypes.arrayOf(React.PropTypes.shape({
+       date: React.PropTypes.string.isRequired,
+       sentence: React.PropTypes.string.isRequired,
+       translation: React.PropTypes.string
+    })),
     onWordClick: React.PropTypes.func,
     onRemove: React.PropTypes.func
 };

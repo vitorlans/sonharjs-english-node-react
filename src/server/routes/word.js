@@ -79,7 +79,7 @@ router.post("/add", authenticate, (req, res) => {
     let word = {
         "sentence": req.body.sentence,
         "translation": req.body.translation,
-        "date": data.toLocaleDateString("pt-BR")
+        "date": data
     };
 
     getUserByCredential(req.currentUser.credential).then((resp) => {
@@ -88,16 +88,25 @@ router.post("/add", authenticate, (req, res) => {
         else {
             let user = resp.docs[0];
             if ("words" in user) {
-                user
-                    .words
-                    .push(word);
+                let obj = user.words.find((element) => {
+                    return element.sentence.toUpperCase() === word.sentence.toUpperCase();
+                });
+
+                if (!obj) {
+                    user.words.push(word);
+                    insertDocument(user).then((data) => {
+                        res.send(user.words);
+                    });
+                } else {
+                    res.send(user.words);
+                }
+
             } else {
                 user.words = [word];
+                insertDocument(user).then((data) => {
+                      res.send(user.words);
+                });
             }
-
-            insertDocument(user).then((data) => {
-                res.send(user.words);
-            });
 
         }
     });
@@ -121,17 +130,26 @@ router.get("/remove", authenticate, (req, res) => {
                 let index = user
                     .words
                     .findIndex((element) => {
-                        return element.sentence.toUpperCase() === req.query.sentence.toUpperCase();
+                        return element
+                            .sentence
+                            .toUpperCase() === req
+                            .query
+                            .sentence
+                            .toUpperCase();
                     });
 
                 if (index >= 0) {
                     user
                         .words
                         .splice(index, 1);
-                }
-                insertDocument(user).then((data) => {
+
+                    insertDocument(user).then((data) => {
+                        res.send(user.words);
+                    });
+                } else {
                     res.send(user.words);
-                });
+                }
+
             } else {
                 res.send([]);
             }

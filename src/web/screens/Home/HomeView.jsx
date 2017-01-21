@@ -29,9 +29,9 @@ export default class HomeView extends Component {
             
         return (
             <div className="app--padding">
-                <div className="w3-content w3-padding-24">
+                <div className="w3-content">
                     <div className="w3-section w3-center">
-                        <img className="w3-image" src="/images/welcome.png" style={{width:"13%"}}></img>
+                        <img className="w3-image" src="/images/welcome.png" style={{height: "250px"}}></img>
                     </div>
                     <div className="w3-section">
                         <SearchWidget onSearch={this.onSearch} title="Start typing any word." />                   
