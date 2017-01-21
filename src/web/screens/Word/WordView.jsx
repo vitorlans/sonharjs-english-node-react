@@ -64,9 +64,12 @@ class WordView extends Component {
         return (
             <div className="app--padding">
             
-               <div className="w3-section">
+                           <div className="w3-section">
                     <SearchWidget onSearch={this.onSearch} />
                </div>
+            { this.props.word.searchWord !== "" ?
+            <div>
+
 
                <div  className="w3-section">
                     <h2 className="w3-center">{this.props.word.searchWord.toUpperCase()}</h2>
@@ -93,6 +96,12 @@ class WordView extends Component {
                 <div  className="w3-section">
                     <TranslateWidget translates={this.props.word.resultSearch.translates} />
                </div>
+               </div>
+                : 
+               <div className="w3-section w3-center">
+                    <img className="w3-image" src="/images/looking.png" style={{}}></img>
+               </div>
+               }
             </div>
         );
     }

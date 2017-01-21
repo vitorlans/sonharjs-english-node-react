@@ -56,7 +56,7 @@ class AccountView extends Component {
         return (
             <div className="app--padding app--margin-top">
                 <div className="w3-section">
-                    {isAuthenticated ? <LoginInfo data={user} onLogout={this.props.logout} /> : <Login onLogin={this.onLogin}/>} 
+                    {isAuthenticated ? <LoginInfo data={user} onLogout={this.props.logout} /> :<div className="w3-display-middle" style={{width:"100%"}}> <Login onLogin={this.onLogin}/> </div>} 
                 </div>
                 <div className="w3-section">
                 {isAuthenticated ? <SavedWordsWidget onWordClick={this.onWordClick} onRemove={this.onRemoveWord} wordList={this.props.account.wordList} /> : ""}

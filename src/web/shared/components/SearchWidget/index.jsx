@@ -40,6 +40,7 @@ export class SearchWidget extends Component {
     render() {
         return (
                     <div className="w3-content" style={{ "maxWidth": "463px"}}>
+                            { this.props.title ? <h3> {this.props.title} </h3> : "" }
                             <div className="w3-row">
                                 <div className="w3-col s10 padding-right-2">
                                     <input type="text"
