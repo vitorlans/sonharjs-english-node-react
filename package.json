@@ -43,6 +43,7 @@
     "object-assign": "4.1.0",
     "promise": "7.1.1",
     "react": "^15.4.2",
+    "react-audio-player": "^0.3.2",
     "react-cookie": "^1.0.4",
     "react-dom": "^15.4.2",
     "react-headroom": "^2.1.3",

@@ -16,7 +16,7 @@ export class HeaderWidget extends React.Component {
                             <LinkWidget to='/'><img className="w3-center header--image" src="/images/playbutton.svg"></img> </LinkWidget>
                         </div>
                         <div className="w3-col s2">
-                             <LinkWidget to='/word' className="w3-xxlarge w3-right text-decoration--none"><b>W</b></LinkWidget> 
+                             <LinkWidget to='/word' className="w3-xxlarge w3-right text-decoration--none"><i className="fa fa-search" aria-hidden="true"></i></LinkWidget> 
                         </div>
                  </div>
             </Headroom>

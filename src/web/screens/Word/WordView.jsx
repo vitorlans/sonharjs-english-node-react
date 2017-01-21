@@ -4,6 +4,8 @@ import { ImageWidget } from 'shared/components/ImageWidget';
 import { DictionaryWidget } from 'shared/components/DictionaryWidget';
 import { TranslateWidget } from 'shared/components/TranslateWidget';
 
+import SoundWidget from 'shared/components/SoundWidget';
+
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { fetchSearchWord, changeSearchWord, saveWord } from 'actions/word-action';
@@ -68,7 +70,11 @@ class WordView extends Component {
 
                <div  className="w3-section">
                     <h2 className="w3-center">{this.props.word.searchWord.toUpperCase()}</h2>
+                    <h5 className="w3-center">{this.props.word.resultSearch.transcription}</h5>
                </div>
+               { this.props.word.resultSearch.soundurl ? <div className="w3-center">
+                  <SoundWidget url={this.props.word.resultSearch.soundurl} />
+               </div> : ""}
                <div className="w3-section">
                     <h3>1. Experience:</h3>
                </div>

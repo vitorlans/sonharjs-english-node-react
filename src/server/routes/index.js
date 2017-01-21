@@ -27,7 +27,6 @@ import { getUserByCredential } from '../connections/repository.db';
         const store = configureStore();
         const routes = createRoutes(history);
 
-        console.log(req);
         match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
             if (redirectLocation) {
                 res.redirect(302, redirectLocation.pathname + redirectLocation.search);

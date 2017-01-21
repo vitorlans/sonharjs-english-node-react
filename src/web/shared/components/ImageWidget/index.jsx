@@ -34,7 +34,7 @@ export class ImageWidget extends Component {
                 <div className="w3-row-padding">
                     {rows}
                 </div>
-                <a className="w3-theme w3-btn-block w3-round w3-margin-top">LOAD MORE</a>
+                { this.props.loadMore ? <a className="w3-theme w3-btn-block w3-round w3-margin-top">LOAD MORE</a> : "" }
             </div>
         );
     }
